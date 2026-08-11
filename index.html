@@ -30,7 +30,7 @@
     --mono: 'PT Mono', ui-monospace, monospace;
   }
   * { box-sizing: border-box; margin: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
   body {
     background: var(--ink);
     color: #e8e6df;
@@ -142,12 +142,14 @@
     color-scheme: dark;
   }
   input:focus, select:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px #d9a94e22; }
+  /* iOS Safari: у date-инпута родной appearance держит min-width и вылезает за колонку */
+  input[type=date] { -webkit-appearance: none; appearance: none; min-width: 0; display: block; text-align: left; min-height: 47px; }
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
   .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0 16px; }
   #manual { display: none; }
 
   .goals { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 8px; }
-  .goals input { position: absolute; opacity: 0; pointer-events: none; }
+  .goals input { position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px; }
   .goals label.goal {
     margin: 0; padding: 16px 12px 14px; cursor: pointer; text-align: center;
     border: 1px solid var(--line); border-radius: 8px;
@@ -253,9 +255,11 @@
   #toast {
     position: fixed; left: 50%; bottom: 30px; transform: translateX(-50%) translateY(80px);
     background: var(--gold); color: #14100a; font-family: var(--mono); font-size: 14px;
-    padding: 10px 22px; border-radius: 6px; transition: transform .3s; z-index: 9;
+    padding: 10px 22px; border-radius: 6px; z-index: 9;
+    opacity: 0; visibility: hidden;
+    transition: transform .3s, opacity .3s, visibility 0s .3s;
   }
-  #toast.show { transform: translateX(-50%) translateY(0); }
+  #toast.show { transform: translateX(-50%) translateY(0); opacity: 1; visibility: visible; transition: transform .3s, opacity .3s; }
 
   /* ── спойлеры с матчастью ── */
   summary { list-style: none; cursor: pointer; }
