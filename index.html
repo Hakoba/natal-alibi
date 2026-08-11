@@ -74,7 +74,7 @@
   @keyframes lokh { from { opacity: .09; } to { opacity: .2; } }
   .constellation text { font-family: var(--mono); font-size: 5.5px; letter-spacing: .12em; fill: #ffedb8; opacity: 1; }
   .constellation .bright { fill: #fff6d8; filter: drop-shadow(0 0 1.5px currentColor) drop-shadow(0 0 3px currentColor); }
-  .c-cat { top: 9%; right: 6%; width: 200px; transform: rotate(-8deg); pointer-events: auto; }
+  .c-cat { top: 9%; right: 6%; width: 200px; transform: rotate(-8deg); }
   .c-kovsh { top: 42%; left: 3%; width: 170px; transform: rotate(4deg); animation-delay: -3s; }
   .c-heart { bottom: 13%; left: 8%; width: 110px; transform: rotate(-7deg); animation-delay: -5s; }
   .c-merc { bottom: 9%; right: 6%; width: 180px; transform: rotate(3deg); animation-delay: -7s; }
@@ -809,19 +809,27 @@
   });
 
   // ── пасхалки-интерактив ──────────────────────────────────────
-  let stampTaps = 0;
-  $('stamp').addEventListener('click', () => {
-    const s = $('stamp');
-    s.style.animation = 'none';
-    void s.getBoundingClientRect();
-    s.style.animation = '';
-    if (++stampTaps === 5) toast('Печать настоящая. Хватит проверять ✶');
-  });
-
+  // и печать (pointer-events: none), и кот (z-index: -1) не ловят клики напрямую —
+  // слушаем документ и проверяем попадание в их прямоугольник
+  const inRect = (el, e) => {
+    const r = el.getBoundingClientRect();
+    return r.width > 0 && e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+  };
   const CAT_LINES = ['а я предупреждал', 'ну вот, опять прочитали', 'кот исчерпал предупреждения'];
-  let catTaps = 0;
-  document.querySelector('.c-cat').addEventListener('click', function () {
-    this.querySelector('text').textContent = CAT_LINES[Math.min(catTaps++, CAT_LINES.length - 1)];
+  const catSvg = document.querySelector('.c-cat');
+  let catTaps = 0, stampTaps = 0;
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('a, button, input, select, label, summary')) return;
+    if (inRect(catSvg, e)) {
+      catSvg.querySelector('text').textContent = CAT_LINES[Math.min(catTaps++, CAT_LINES.length - 1)];
+    }
+    const s = $('stamp');
+    if (inRect(s, e)) {
+      s.style.animation = 'none';
+      void s.getBoundingClientRect();
+      s.style.animation = '';
+      if (++stampTaps === 5) toast('Печать настоящая. Хватит проверять ✶');
+    }
   });
 
   console.log('%c✶ НЕБЕСНАЯ КАНЦЕЛЯРИЯ ✶',
