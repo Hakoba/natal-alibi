@@ -72,8 +72,9 @@
     animation: lokh 8s ease-in-out infinite alternate;
   }
   @keyframes lokh { from { opacity: .09; } to { opacity: .2; } }
-  .constellation text { font-family: var(--mono); font-size: 5px; letter-spacing: .12em; fill: currentColor; opacity: .85; }
-  .c-cat { top: 9%; right: 6%; width: 200px; transform: rotate(-8deg); }
+  .constellation text { font-family: var(--mono); font-size: 5.5px; letter-spacing: .12em; fill: #ffedb8; opacity: 1; }
+  .constellation .bright { fill: #fff6d8; filter: drop-shadow(0 0 1.5px currentColor) drop-shadow(0 0 3px currentColor); }
+  .c-cat { top: 9%; right: 6%; width: 200px; transform: rotate(-8deg); pointer-events: auto; }
   .c-kovsh { top: 42%; left: 3%; width: 170px; transform: rotate(4deg); animation-delay: -3s; }
   .c-heart { bottom: 13%; left: 8%; width: 110px; transform: rotate(-7deg); animation-delay: -5s; }
   .c-merc { bottom: 9%; right: 6%; width: 180px; transform: rotate(3deg); animation-delay: -7s; }
@@ -322,7 +323,7 @@
     <circle cx="28" cy="14" r="0.9"/><circle cx="11" cy="2" r="1.2"/><circle cx="25" cy="1" r="1.1"/>
     <circle cx="52" cy="12" r="1.3"/><circle cx="74" cy="15" r="1"/><circle cx="34" cy="26" r="0.9"/>
     <circle cx="60" cy="27" r="1"/><circle cx="74" cy="25" r="0.9"/>
-    <circle cx="84" cy="8" r="1"/><circle cx="86" cy="2" r="1.4"/>
+    <circle cx="84" cy="8" r="1"/><circle class="bright" cx="86" cy="2" r="1.8"/>
     <circle cx="29" cy="42" r="1.1"/><circle cx="38" cy="43" r="0.9"/><circle cx="59" cy="43" r="1.2"/><circle cx="70" cy="42" r="1"/>
   </g>
   <text x="50" y="56" text-anchor="middle">кто прочитал тот здохнет</text>
@@ -333,7 +334,7 @@
   </g>
   <g fill="currentColor">
     <circle cx="2" cy="14" r="1.2"/><circle cx="20" cy="10" r="0.9"/><circle cx="36" cy="16" r="1.1"/>
-    <circle cx="50" cy="20" r="1.3"/><circle cx="78" cy="14" r="1"/><circle cx="84" cy="38" r="1.4"/>
+    <circle cx="50" cy="20" r="1.3"/><circle cx="78" cy="14" r="1"/><circle class="bright" cx="84" cy="38" r="1.8"/>
     <circle cx="54" cy="44" r="1"/>
   </g>
   <text x="50" y="58" text-anchor="middle">ковш большой отмазки</text>
@@ -345,7 +346,7 @@
   </g>
   <g fill="currentColor">
     <circle cx="30" cy="18" r="1"/><circle cx="22" cy="8" r="1.2"/><circle cx="10" cy="8" r="0.9"/>
-    <circle cx="4" cy="20" r="1.3"/><circle cx="10" cy="34" r="1"/><circle cx="30" cy="52" r="1.2"/>
+    <circle class="bright" cx="4" cy="20" r="1.7"/><circle cx="10" cy="34" r="1"/><circle cx="30" cy="52" r="1.2"/>
     <circle cx="50" cy="34" r="1.1"/><circle cx="56" cy="20" r="0.9"/><circle cx="50" cy="8" r="1.3"/>
     <circle cx="38" cy="8" r="1"/><circle cx="26" cy="26" r="0.8"/><circle cx="33" cy="34" r="0.9"/>
     <circle cx="28" cy="44" r="0.8"/>
@@ -361,7 +362,7 @@
     <circle cx="2" cy="34" r="1.1"/><circle cx="14" cy="26" r="0.9"/><circle cx="26" cy="22" r="1.2"/>
     <circle cx="36" cy="26" r="1"/><circle cx="40" cy="34" r="1.3"/><circle cx="34" cy="40" r="0.9"/>
     <circle cx="26" cy="38" r="1"/><circle cx="24" cy="30" r="0.8"/><circle cx="30" cy="22" r="1"/>
-    <circle cx="42" cy="16" r="1.1"/><circle cx="56" cy="12" r="0.9"/><circle cx="70" cy="10" r="1.4"/>
+    <circle cx="42" cy="16" r="1.1"/><circle cx="56" cy="12" r="0.9"/><circle class="bright" cx="70" cy="10" r="1.8"/>
   </g>
   <text x="40" y="52" text-anchor="middle">меркурий (ретроградный, как всегда)</text>
 </svg>
@@ -422,7 +423,7 @@
       </span>
       <span>
         <input type="radio" name="goal" id="g-hr" value="hr">
-        <label class="goal" for="g-hr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>HR<br>с прибабахом</label>
+        <label class="goal" for="g-hr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>HR<br>с натальной картой</label>
       </span>
       <span>
         <input type="radio" name="goal" id="g-custom" value="custom">
@@ -462,7 +463,7 @@
         <div class="why" id="why"></div>
         <div class="moonmove" id="moonMove"></div>
       </details>
-      <svg class="stamp" viewBox="0 0 160 160" aria-hidden="true">
+      <svg class="stamp" id="stamp" viewBox="0 0 160 160" aria-hidden="true">
         <defs><path id="cw" d="M80,80 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0"></path></defs>
         <circle cx="80" cy="80" r="72" fill="none" stroke="#b23a2c" stroke-width="4"/>
         <circle cx="80" cy="80" r="46" fill="none" stroke="#b23a2c" stroke-width="1.6"/>
@@ -519,7 +520,7 @@
   <footer>
     астрономия — настоящая (astronomy-engine, эфемериды до долей градуса)<br>
     астрология — <em>как обычно</em> · дата рождения не искажается, совесть чиста на 11/12<br>
-    ✶ натальное алиби, 2026 · сосед по серверу: <a href="https://useopora.com">useopora.com</a>
+    ✶ натальное алиби, 2026 · <a href="https://github.com/Hakoba/natal-alibi">исходники</a><span id="ghStars" title="настоящие звёзды, не астрологические"></span> · сосед по серверу: <a href="https://useopora.com">useopora.com</a>
   </footer>
 </main>
 <div id="toast">Легенда скопирована ✶</div>
@@ -612,12 +613,30 @@
     custom: (a) => `Вы заказывали асцендент в знаке ${SIGNS[a]} — вот окно, в котором его выдают. ${ASC_LINE[a][0].toUpperCase()}${ASC_LINE[a].slice(1)}.`,
   };
 
-  // пасхалки по солнечному знаку (он задан датой, время бессильно)
+  // пасхалки по солнечному знаку (он задан датой, время бессильно); префиксы P.S./P.P.S. дописываются при выводе
   const SUN_EGG = {
-    7: 'P.S. По Солнцу вы Скорпион. Слушайте… тут даже канцелярия бессильна: какое время ни назовите, они всё равно почувствуют. Соболезнуем.',
-    2: 'P.S. По Солнцу вы Близнецы — смело называйте оба времени сразу, вам поверят.',
-    5: 'P.S. Вы Дева. Подозреваем, что своё настоящее время рождения вы и так знаете с точностью до секунды. Справку всё равно оставьте.',
-    4: 'P.S. Вы Лев. Асцендент вам, строго говоря, не нужен — вас и так заметят. Но пусть будет.',
+    0: 'По Солнцу вы Овен. Окно запомнили? Перечитайте ещё раз: мы же видели, что по диагонали.',
+    1: 'По Солнцу вы Телец. Окно можно не запоминать — всё равно назовёте то время, которое вам удобнее.',
+    2: 'По Солнцу вы Близнецы — смело называйте оба времени сразу, вам поверят.',
+    3: 'По Солнцу вы Рак. Если от справки станет немного стыдно — пройдёт. К следующему полнолунию.',
+    4: 'Вы Лев. Асцендент вам, строго говоря, не нужен — вас и так заметят. Но пусть будет.',
+    5: 'Вы Дева. Подозреваем, что своё настоящее время рождения вы и так знаете с точностью до секунды. Справку всё равно оставьте.',
+    6: 'По Солнцу вы Весы. Понимаем, выбрать одно окно тяжело: запасные версии ниже, думать можно до завтра.',
+    7: 'По Солнцу вы Скорпион. Слушайте… тут даже канцелярия бессильна: какое время ни назовите, они всё равно почувствуют. Соболезнуем.',
+    8: 'По Солнцу вы Стрелец. Только умоляем: не рассказывайте на первом же свидании, откуда у вас эта справка.',
+    9: 'По Солнцу вы Козерог. Вы ведь уже пересчитали за нами формулу асцендента? Вот и славно, канцелярии нужны такие люди.',
+    10: 'По Солнцу вы Водолей. Сейчас скажете, что в астрологию не верите, и назовёте настоящее время. Уважаем. Справку всё равно заберите.',
+    11: 'По Солнцу вы Рыбы. Своё настоящее время рождения вы всё равно не помните — так что наша версия ничем не хуже.',
+  };
+
+  // пасхалки по дате рождения
+  const DATE_EGG = {
+    '01-01': 'Родиться 1 января — само по себе алиби: что происходило в ту ночь, не помнит никто.',
+    '02-29': 'Вы родились 29 февраля. День рождения раз в четыре года — канцелярия ценит людей, экономных на свечках.',
+    '04-01': 'Рождённым 1 апреля ставим двойную печать: вам и с ней не поверят.',
+    '04-12': 'День космонавтики. Единственная дата, когда «я по звёздам» — это профессия, а не диагноз.',
+    '10-31': 'Хэллоуин. Асцендент можете не называть, дата сама всё за вас скажет.',
+    '12-31': '31 декабря. Ваше время рождения ежегодно тонет в оливье — проверять его точно никто не придёт.',
   };
 
   const PHRASES = [
@@ -626,7 +645,8 @@
     'Подчищаем архив небесной канцелярии…', 'Уговариваем асцендент подвинуться…',
     'Считаем дома. Ипотека не учитывается…', 'Проверяем, не Водолей ли ваш HR…',
     'Восьмой дом просил не беспокоить…', 'Печатаем справку на гербовой бумаге…',
-    'Ставим печать «Одобрено звёздами»…',
+    'Ставим печать «Одобрено звёздами»…', 'Спорим с Плутоном, планета ли он…',
+    'Округляем судьбу до пяти минут…', 'Торгуемся с Сатурном о ретрограде…',
   ];
 
   // ── инициализация формы ──────────────────────────────────────
@@ -639,14 +659,24 @@
     r.addEventListener('change', () => { $('customSignWrap').style.display = r.value === 'custom' && r.checked ? 'block' : 'none'; }));
 
   const fmt = (min) => `${String(Math.floor(min / 60)).padStart(2, '0')}:${String(min % 60).padStart(2, '0')}`;
+  let issued = 0; // счётчик выданных справок за сессию — для пасхалок про перебор судеб
+
+  const toast = (msg) => {
+    $('toast').textContent = msg;
+    $('toast').classList.add('show');
+    clearTimeout(toast.t);
+    toast.t = setTimeout(() => $('toast').classList.remove('show'), 1800);
+  };
 
   // ── расчёт ───────────────────────────────────────────────────
   function compute() {
     const dateStr = $('bdate').value;
     const cityVal = $('city').value;
-    let lat, lon, tz, cityName;
+    let lat, lon, tz, cityName, polar = false;
     if (cityVal === 'manual') {
-      lat = Math.max(-66, Math.min(66, +$('mlat').value || 0));
+      const rawLat = +$('mlat').value || 0;
+      polar = Math.abs(rawLat) > 66;
+      lat = Math.max(-66, Math.min(66, rawLat));
       lon = Math.max(-180, Math.min(180, +$('mlon').value || 0));
       // ponytail: ручной город — только целые UTC-сдвиги через Etc/GMT (знак инвертирован); полчасовые пояса — выбирайте ближайший город
       const off = Math.max(-12, Math.min(14, Math.round(+$('moff').value || 0)));
@@ -664,7 +694,7 @@
     const anti = goal === 'custom' ? { asc: [(preset.asc[0] + 6) % 12] } : ANTI[goal];
     const worst = Natal.scoreWindows(windows, anti).find((x) => x.startMin !== scored[0].startMin);
     const sun = Natal.signOf(Natal.sunLon(Natal.utcFromLocal(dateStr, 720, tz)));
-    return { dateStr, cityName, goal, preset, samples, windows, scored, worst, sun };
+    return { dateStr, cityName, goal, preset, samples, windows, scored, worst, sun, manual: cityVal === 'manual', polar };
   }
 
   function render(R) {
@@ -711,7 +741,17 @@
     $('plain').innerHTML = `Называете <b>${fmt(rec)}</b> — и по карте вы «${ASC_LINE[w.asc]}». ${PLAIN_GOAL[R.goal]}<br>` +
       `Главное, не ляпните время из ${fmt(R.worst.startMin)}–${fmt(R.worst.endMin)}: с ним вы «${ASC_LINE[R.worst.asc]}».`;
 
-    $('egg').textContent = SUN_EGG[R.sun] || '';
+    issued++;
+    const today = new Date();
+    const eggs = [SUN_EGG[R.sun], DATE_EGG[R.dateStr.slice(5)]];
+    if (d.getDate() === 13 && d.getDay() === 5) eggs.push('Вы родились в пятницу, 13-го. Козыряйте этим вместо асцендента — работает на любую аудиторию.');
+    if (d.getDate() === today.getDate() && d.getMonth() === today.getMonth()) eggs.push('И кстати — с днём рождения. Свечку задуйте, справку заламинируйте.');
+    if (d > today) eggs.push('Дата рождения в будущем. Канцелярия уважает людей, которые готовят документы заранее.');
+    if (R.polar) eggs.push('За полярным кругом асцендент неделями не вылезает из-за горизонта, так что мы передвинули вас на 66-ю широту. Считайте, что переехали.');
+    else if (R.manual) eggs.push('Место рождения — безымянная точка на карте. Канцелярия уважает людей-загадок.');
+    if (issued === 3) eggs.push('Третья справка за сессию. Канцелярия видит, что вы перебираете судьбы, но осуждать не станет: все так делают.');
+    if (issued === 7) eggs.push('Седьмая справка. Так, может, вы всё-таки Близнецы?');
+    $('egg').innerHTML = eggs.filter(Boolean).map((t, i) => `${'P.'.repeat(i + 1)}S. ${t}`).join('<br>');
 
     $('worst').innerHTML = `<b>Худшее время (не называть!):</b> ${fmt(R.worst.startMin)}–${fmt(R.worst.endMin)} — ` +
       `асцендент ${SIGNS[R.worst.asc]}, Луна в зн. ${SIGNS[R.worst.moon]}. ${WORST_LINE[R.goal]}`;
@@ -719,10 +759,7 @@
     $('copyBtn').onclick = () => {
       const legend = `Родился(ась) ${d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })} в ${fmt(rec)} (${R.cityName}). ` +
         `Асцендент — ${SIGNS[w.asc]}, Луна в знаке ${SIGNS[w.moon]}, MC в знаке ${SIGNS[w.mcSign]}. Проверено небесной канцелярией ✶`;
-      navigator.clipboard.writeText(legend).then(() => {
-        $('toast').classList.add('show');
-        setTimeout(() => $('toast').classList.remove('show'), 1800);
-      });
+      navigator.clipboard.writeText(legend).then(() => toast('Легенда скопирована ✶'));
     };
   }
 
@@ -770,6 +807,33 @@
     $('form').style.display = 'block';
     $('form').scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
+
+  // ── пасхалки-интерактив ──────────────────────────────────────
+  let stampTaps = 0;
+  $('stamp').addEventListener('click', () => {
+    const s = $('stamp');
+    s.style.animation = 'none';
+    void s.getBoundingClientRect();
+    s.style.animation = '';
+    if (++stampTaps === 5) toast('Печать настоящая. Хватит проверять ✶');
+  });
+
+  const CAT_LINES = ['а я предупреждал', 'ну вот, опять прочитали', 'кот исчерпал предупреждения'];
+  let catTaps = 0;
+  document.querySelector('.c-cat').addEventListener('click', function () {
+    this.querySelector('text').textContent = CAT_LINES[Math.min(catTaps++, CAT_LINES.length - 1)];
+  });
+
+  console.log('%c✶ НЕБЕСНАЯ КАНЦЕЛЯРИЯ ✶',
+    'color:#d9a94e;font-family:monospace;font-size:14px',
+    '\nРаз вы дочитали до консоли, держите служебную тайну: настоящее время рождения не знает никто. В этом весь фокус.' +
+    '\nИсходники и формулы: https://github.com/Hakoba/natal-alibi');
+
+  // счётчик настоящих звёзд (гитхабных); показываем, когда их больше одной
+  fetch('https://api.github.com/repos/Hakoba/natal-alibi')
+    .then((r) => (r.ok ? r.json() : null))
+    .then((j) => { if (j && j.stargazers_count > 1) $('ghStars').textContent = ` ★ ${j.stargazers_count}`; })
+    .catch(() => {});
 })();
 </script>
 </body>
