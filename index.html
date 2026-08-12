@@ -284,13 +284,6 @@
   .faq summary { font-size: 20px; color: #dfe2ef; }
   .faq summary::before { content: '✶ '; color: var(--gold); }
   .faq details p { margin-top: 10px; color: #b9bed6; font-size: 17px; }
-  /* ── реклама Опоры (появляется после расчёта) ── */
-  .kapi { display: none; margin-top: 46px; }
-  .kapi p { color: #c9cde0; margin-bottom: 12px; }
-  .kapi p b { color: var(--gold-soft); font-weight: 600; }
-  .kapi .btn { width: auto; display: inline-block; padding: 14px 30px; margin-top: 8px; }
-  .kapi .fine { margin-top: 16px; font-family: var(--mono); font-size: 11px; color: #6a7090; letter-spacing: .08em; }
-
   footer { margin-top: 60px; text-align: center; font-family: var(--mono); font-size: 12px; color: #6a7090; letter-spacing: .08em; line-height: 2; }
   footer em { color: #9299b8; }
   footer a { color: var(--gold); text-decoration: none; border-bottom: 1px solid #d9a94e55; }
@@ -493,14 +486,6 @@
     </div>
   </section>
 
-  <section class="card kapi" id="kapiCard">
-    <h2>Партнёр небесной канцелярии</h2>
-    <p>Асцендент мы вам подобрали. А вот статьи, курсы и «прочитаю на выходных» сами себя не дочитают — тут астрология бессильна.</p>
-    <p><b>Opora</b> — бот в Telegram: кидаешь ссылку или курс, Капи раскладывает по категориям, присылает дайджест и напоминает, пока не дочитаешь. Без регистрации, прямо в Telegram — и дешевле любого астролога.</p>
-    <a class="btn" href="https://useopora.com">Завести Опору ✶</a>
-    <div class="fine">по-соседски: у нас с Опорой общий сервер</div>
-  </section>
-
   <section class="card faq" style="margin-top:46px">
     <h2>Вопросы и ответы</h2>
     <details>
@@ -524,7 +509,7 @@
   <footer>
     астрономия — настоящая (astronomy-engine, эфемериды до долей градуса)<br>
     астрология — <em>как обычно</em> · дата рождения не искажается, совесть чиста на 11/12<br>
-    ✶ натальное алиби, 2026 · <a href="https://github.com/Hakoba/natal-alibi">исходники</a><span id="ghStars" title="настоящие звёзды, не астрологические"></span> · сосед по серверу: <a href="https://useopora.com">useopora.com</a>
+    ✶ натальное алиби, 2026 · <a href="https://github.com/Hakoba/natal-alibi">исходники</a><span id="ghStars" title="настоящие звёзды, не астрологические"></span>
   </footer>
 </main>
 <div id="toast">Легенда скопирована ✶</div>
@@ -787,7 +772,6 @@
     timers.push(setTimeout(() => {
       $('calc').style.display = 'none';
       $('result').style.display = 'block';
-      $('kapiCard').style.display = 'block';
       render(R);
       $('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, total + 200));
