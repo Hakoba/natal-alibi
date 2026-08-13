@@ -7,7 +7,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "0BSD",
   "type": "commonjs",
   "dependencies": {
     "astronomy-engine": "^2.1.19"
